@@ -4,7 +4,7 @@ from datetime import datetime
 
 # Function to calculate future value with interest
 def calculate_future_value(df, interest_rate, current_date):
-    df['date'] = pd.to_datetime(df['Date'], format='%Y-%m-%d')
+    df['date'] = pd.to_datetime(df['Date'])
     df['future_value'] = df.apply(lambda row: row['Amount'] * (1 + interest_rate) ** ((current_date - row['date']).days / 365), axis=1)
     total_future_value = df['future_value'].sum()
     return df, total_future_value
